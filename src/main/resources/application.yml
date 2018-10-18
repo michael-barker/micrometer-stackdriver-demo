@@ -1,3 +1,25 @@
 spring.sleuth:
-  sampler.probability: 1.0
-  web.skipPattern: (^cleanup.*|.+favicon.*)
+    sampler.probability: 1.0
+    web.skipPattern: (^cleanup.*|.+favicon.*)
+
+management:
+  metrics.distribution:
+    percentiles:
+      http.server.requests: 0.99
+#    percentiles-histogram:
+#      http.server.requests: true
+    sla:
+      http.server.requests: 150ms, 5000ms
+
+  endpoints.web.exposure.include:
+    - health
+    - info
+    - prometheus
+#    - env
+
+#debug: true
+
+#logging.level:
+#  zipkin2: DEBUG
+#  io.zipkin.gcp: DEBUG
+#  org.springframework.cloud.sleuth: DEBUG
